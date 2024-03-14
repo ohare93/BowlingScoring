@@ -21,8 +21,8 @@ public class PlayerScoresToConsole : IOutputPlayer
         }
 
         Stack<int> endScores = playerGame.CalculateScores();
-        string scoreEachFrame = "Score per Frame:     " + String.Join("|", endScores.Select(s => NumberToPaddedString(s)));
-        string runningTotal = "Score Running Total: " + String.Join("|", AccumulateScores(endScores).Select(s => NumberToPaddedString(s)));
+        string scoreEachFrame = "Score per Frame:      " + String.Join("|", endScores.Select(s => NumberToPaddedString(s)));
+        string runningTotal = "Score Running Total:  " + String.Join("|", AccumulateScores(endScores).Select(s => NumberToPaddedString(s)));
 
         StringBuilder stats = new();
         stats.Append("Stats:     ");
