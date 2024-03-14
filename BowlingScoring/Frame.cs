@@ -79,7 +79,7 @@ public class Frame : FrameBase
         if (IsSpare)
             return 10 + throwAfter;
 
-        return FirstThrow.SimpleScore + SecondThrow?.SimpleScore ?? 0;
+        return FirstThrow.SimpleScore + (SecondThrow?.SimpleScore ?? 0);
     }
 
     public override string ToString()
@@ -154,8 +154,8 @@ public class FinalFrame : FrameBase
     public override int Score(int throwAfter, int throwAfterThat)
     {
         return FirstThrow.SimpleScore
-            + SecondThrow?.SimpleScore ?? 0
-            + ThirdThrow?.SimpleScore ?? 0;
+            + (SecondThrow?.SimpleScore ?? 0)
+            + (ThirdThrow?.SimpleScore ?? 0);
     }
 
     public override string ToString()
