@@ -9,6 +9,12 @@ public interface IScoreCalculatable
 
 }
 
+/// <summary>
+/// Base class for all frames.
+/// 
+/// Knows how to calculate its own score, whether that score is fully resolved, and whether the turn is complete.
+/// </summary>
+/// <param name="firstThrow"></param>
 public abstract partial class FrameBase(Throw firstThrow) : IScoreCalculatable
 {
 
@@ -25,7 +31,9 @@ public abstract partial class FrameBase(Throw firstThrow) : IScoreCalculatable
     public abstract bool IsScoreResolved(int numOfFutureThrows);
 }
 
-
+/// <summary>
+/// A normal Frame in Bowling. May contain 1 or 2 throws.
+/// </summary>
 public class Frame : FrameBase
 {
     public Frame(Throw firstThrow) : base(firstThrow)
@@ -116,6 +124,9 @@ public class Frame : FrameBase
     }
 }
 
+/// <summary>
+/// The final Frame in Bowling. May contain up to 3 throws. Scoring rules differ
+/// </summary>
 public class FinalFrame : FrameBase
 {
     public Throw? ThirdThrow { get; set; }

@@ -1,5 +1,10 @@
 ﻿namespace BowlingScoring;
 
+using BowlingOutput;
+
+/// <summary>
+/// Holder for the full game state of a single player
+/// </summary>
 public class PlayerGame
 {
     public IList<FrameBase> Frames { get; internal set; }
@@ -20,17 +25,17 @@ public class PlayerGame
     public Stack<int> CalculateScores()
     {
         var endScores = new Stack<int>();
-        Stack<int> throwsInReverseOrder = new Stack<int>();
+        Stack<int> throws = new Stack<int>();
 
         foreach(var frame in Frames.Reverse())
         {
-            int throwAfter = throwsInReverseOrder.ElementAtOrDefault(0);
-            int throwAfterThat = throwsInReverseOrder.ElementAtOrDefault(1);
+            int throwAfter = throws.ElementAtOrDefault(0);
+            int throwAfterThat = throws.ElementAtOrDefault(1);
 
             int frameScore = frame.Score(throwAfter, throwAfterThat);
             endScores.Push(frameScore);
 
-            frame.GetThrows().Reverse().ToList().ForEach(t => throwsInReverseOrder.Push(t.SimpleScore));
+            frame.GetThrows().Reverse().ToList().ForEach(t => throws.Push(t.SimpleScore));
         }
 
         return endScores;
